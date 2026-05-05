@@ -1,0 +1,14 @@
+[
+  {
+    "task": "Parse an AWS S3 bucket name and object key from a full S3 URI like 's3://my-bucket/path/to/object.txt' and extract the bucket name and key separately",
+    "format": "regex"
+  },
+  {
+    "task": "Create a CloudFormation template JSON object that defines a basic EC2 security group allowing inbound HTTP traffic on port 80 from any source",
+    "format": "json"
+  },
+  {
+    "task": "Write a Python function that takes an AWS IAM policy document as a dictionary and returns a list of all Resource ARNs mentioned in the policy statements",
+    "format": "python"
+  }
+]
