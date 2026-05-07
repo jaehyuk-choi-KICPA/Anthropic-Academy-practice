@@ -1,0 +1,373 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Prompt Evaluation Report</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                line-height: 1.6;
+                margin: 0;
+                padding: 20px;
+                color: #333;
+            }
+            .header {
+                background-color: #f0f0f0;
+                padding: 20px;
+                border-radius: 5px;
+                margin-bottom: 20px;
+            }
+            .summary-stats {
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            .stat-box {
+                background-color: #fff;
+                border-radius: 5px;
+                padding: 15px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                flex-basis: 30%;
+                min-width: 200px;
+            }
+            .stat-value {
+                font-size: 24px;
+                font-weight: bold;
+                margin-top: 5px;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 20px;
+            }
+            th {
+                background-color: #4a4a4a;
+                color: white;
+                text-align: left;
+                padding: 12px;
+            }
+            td {
+                padding: 10px;
+                border-bottom: 1px solid #ddd;
+                vertical-align: top;
+            }
+            tr:nth-child(even) {
+                background-color: #f9f9f9;
+            }
+            .output-cell {
+                white-space: pre-wrap;
+            }
+            .score {
+                font-weight: bold;
+                padding: 5px 10px;
+                border-radius: 3px;
+                display: inline-block;
+            }
+            .score-high {
+                background-color: #c8e6c9;
+                color: #2e7d32;
+            }
+            .score-medium {
+                background-color: #fff9c4;
+                color: #f57f17;
+            }
+            .score-low {
+                background-color: #ffcdd2;
+                color: #c62828;
+            }
+            .output {
+                overflow: auto;
+                white-space: pre-wrap;
+            }
+
+            .output pre {
+                background-color: #f5f5f5;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                padding: 10px;
+                margin: 0;
+                font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+                font-size: 14px;
+                line-height: 1.4;
+                color: #333;
+                box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+                overflow-x: auto;
+                white-space: pre-wrap; 
+                word-wrap: break-word; 
+            }
+
+            td {
+                width: 20%;
+            }
+            .score-col {
+                width: 80px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Prompt Evaluation Report</h1>
+            <div class="summary-stats">
+                <div class="stat-box">
+                    <div>Total Test Cases</div>
+                    <div class="stat-value">3</div>
+                </div>
+                <div class="stat-box">
+                    <div>Average Score</div>
+                    <div class="stat-value">3.0 / 10</div>
+                </div>
+                <div class="stat-box">
+                    <div>Pass Rate (≥7)</div>
+                    <div class="stat-value">0.0%</div>
+                </div>
+            </div>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Scenario</th>
+                    <th>Prompt Inputs</th>
+                    <th>Solution Criteria</th>
+                    <th>Output</th>
+                    <th>Score</th>
+                    <th>Reasoning</th>
+                </tr>
+            </thead>
+            <tbody>
+    
+            <tr>
+                <td>Testing with a small manufacturing company's trial balance containing unusual inventory write-offs, significant related-party transactions, and abnormal depreciation adjustments - focusing on identifying red flags in asset accounts and validating management's accounting judgments</td>
+                <td class="prompt-inputs"><strong>company_name:</strong> 한솔정밀기계공업(주)<br><strong>industry:</strong> 기계 및 장비 제조업<br><strong>fiscal_year_end:</strong> 2024-12-31<br><strong>trial_balance_excerpt:</strong> 계정과목 | 전기 잔액(원) | 당기 잔액(원)
+현금및현금등가물 | 450,000,000 | 85,000,000
+매출채권 | 320,000,000 | 580,000,000
+재고자산 | 680,000,000 | 420,000,000
+선급금 | 45,000,000 | 180,000,000
+유형자산 | 2,100,000,000 | 2,050,000,000
+감가상각누계액 | (580,000,000) | (920,000,000)
+무형자산 | 120,000,000 | 115,000,000
+관계자채권 | 0 | 250,000,000
+매입채무 | 420,000,000 | 180,000,000
+단기차입금 | 300,000,000 | 650,000,000
+관계자채무 | 0 | 380,000,000
+기타포괄손익-공정가치 | 60,000,000 | 25,000,000
+재고자산평가손 | 0 | 95,000,000
+기계장비감가상각비 | 180,000,000 | 420,000,000<br><strong>materiality_pm:</strong> 120,000,000</td>
+                <td class="criteria">• 모든 이상 계정(재고자산 급감, 감가상각비 133% 증가, 관계자거래 신규 발생, 현금 급감)을 식별하고 각각의 이상 사유를 명시<br>• 각 이상 계정별로 구체적인 감사절차(예: 재고실사, 감가상각 정책 검토, 관계자거래 계약서 검증 등) 제시<br>• 경영진 인터뷰 질문이 계정별로 구성되어 있으며, 회계판단(accounting judgment)과 경영상황 변화를 검증하는 질문 포함<br>• K-IFRS 적용 관점에서 공정가치평가 및 손상차손 검토의 필요성 언급</td>
+                <td class="output"><pre># 한솔정밀기계공업(주) 별도정산표 감사 분석 보고서
+
+---
+
+## 1단계 - 이상 계정 식별
+
+### 1. 현금및현금등가물
+| 항목 | 내용 |
+|------|------|
+| **변동 금액** | △365,000,000원 (감소) |
+| **변동률** | -81.1% |
+| **PM 대비** | 3.0배 초과 |
+
+**이상 사유:**
+- 단기차입금 350,000,000원 증가, 선급금 135,000,000원 증가에도 불구하고 현금이 대폭 감소
+- 재고자산 260,000,000원 감소, 매입채무 240,000,000원 감소로 인한 유출액이 과도함
+- 현금흐름 불균형으로 유동성 악화 우려
+
+**추천 감사절차:**
+1. 당기 현금흐름표 상세 검토 - 영업활동/투자활동/재무활동 현금흐름의 합계 재확인
+2. 기말 현금 잔액에 대한 은행 확인장(Bank Confirmation Letter) 수취 및 현금 실사
+
+---
+
+### 2. 매출채권
+| 항목 | 내용 |
+|------|------|
+| **변동 금액** | +260,000,000원 (증가) |
+| **변동률** | +81.3% |
+| **PM 대비** | 2.2배 초과 |
+
+**이상 사유:**
+- 현금이 81% 감소하는 상황에서 매출채권이 81% 증가
+- 회수 능력 저하와 매출채권 적립의 급증으로 연계된 신용위험 증가
+- 기계 제조업 특성상 비정상적인 급증
+
+**추천 감사절차:**
+1. 매출채권 고객별 에이징 분석(Aging Schedule) 검토 - 연체액 규모 및 회수가능성 평가
+2. 당기 매출액 대비 매출채권 비율 추이 분석 및 주요 거래처 신용도 조회
+
+---
+
+### 3. 선급금
+| 항목 | 내용 |
+|------|------|
+| **변동 금액** | +135,000,000원 (증가) |
+| **변동률** | +300% |
+| **PM 대비** | 1.1배 초과 |
+
+**이상 사유:**
+- 당기 선급금이 전기 대비 300% 증가
+- 현금 부족 상황에서의 선급금 대폭 증가는 비정상적
+- 선급금 회수 가능성, 공급자 신용도, 실제 납품 여부 불명확
+
+**추천 감사절차:**
+1. 선급금 명세서 검토 - 공급자별 선급 내역, 계약서, 납품 확인서 대조
+2. 선급금 대상 거래처와의 직접 확인장 수취 및 선급금 회수 일정 확인
+
+---
+
+### 4. 재고자산평가손
+| 항목 | 내용 |
+|------|------|
+| **변동 금액** | +95,000,000원 (신규 발생) |
+| **변동률** | 신규 계정</pre></td>
+                <td class="score-col"><span class="score score-low">3</span></td>
+                <td class="reasoning">솔루션은 현금, 매출채권, 선급금 등 일부 계정에 대해 정량적 분석과 감사절차를 제시하여 부분적으로 양호하나, 과제의 MANDATORY 요구사항 3가지를 충족하지 못함: (1) 재고자산 급감, 감가상각비 급증, 관계자거래 신규 발생 등 핵심 이상 계정 누락으로 식별 불완전, (2) 경영진 인터뷰 질문 전혀 미제시, (3) K-IFRS 적용 관점의 공정가치평가 및 손상차손 검토 미언급. 특히 솔루션이 재고자산평가손 항목에서 불완전하게 종료되어 전체 분석이 미완성 상태임.</td>
+            </tr>
+        
+            <tr>
+                <td>Testing with a service-based SME's trial balance showing irregular revenue recognition patterns, excessive bad debt provisions, and significant year-end journal entries in receivables and payables - emphasizing detection of potential revenue manipulation and cutoff issues</td>
+                <td class="prompt-inputs"><strong>company_name:</strong> 하이테크솔루션 주식회사<br><strong>industry:</strong> 소프트웨어 및 IT서비스업<br><strong>fiscal_year_end:</strong> 2024-12-31<br><strong>trial_balance_excerpt:</strong> 계정과목 | 전기 잔액(원) | 당기 잔액(원)
+매출액 | 0 | 8,750,000,000
+용역비 | 0 | 2,100,000,000
+판매비와관리비 | 0 | 1,850,000,000
+매출채권 | 1,200,000,000 | 3,850,000,000
+기타수취채권 | 180,000,000 | 520,000,000
+대손충당금 | (45,000,000) | (680,000,000)
+외상금 | 320,000,000 | 185,000,000
+선수금 | 85,000,000 | 42,000,000
+기타미지급금 | 95,000,000 | 425,000,000
+미수수익 | 125,000,000 | 680,000,000
+선급비용 | 210,000,000 | 95,000,000<br><strong>materiality_pm:</strong> 350,000,000</td>
+                <td class="criteria">• 이상 계정 최소 5개 이상 식별 및 각각의 이상 사유를 정량적 근거(전기 대비 증감율, 비율 분석 등)와 함께 제시<br>• 각 이상 계정별로 구체적인 감사절차 3개 이상 제안 (표본선정, 문서확인, 재계산 등의 감사기법 포함)<br>• 계정별 경영진 인터뷰 질문 최소 2개 이상 제시하되, 수익인식 적시성 및 채권회수 가능성에 중점<br>• K-IFRS 적용 관점에서의 회계처리 이슈(예: 수익인식 기준, 대손충당금 평가, 기간배분) 언급</td>
+                <td class="output"><pre># 하이테크솔루션 주식회사 감사 분석 보고서
+
+---
+
+## 1단계 - 이상 계정 식별
+
+### 📊 이상 계정 1: 매출채권
+
+| 항목 | 내용 |
+|------|------|
+| **계정과목명** | 매출채권 |
+| **변동 금액** | 2,650,000,000원 |
+| **변동률** | +221.0% |
+| **PM 대비 배수** | 7.6배 (변동액이 중요성 초과) |
+
+**이상 사유:**
+- 당기 매출액이 8,750,000,000원이라 가정할 때, 매출채권 회전율이 급격히 악화됨
+- 전기 대비 당기 매출채권이 비정상적으로 증가했으며, 이는 매출 증가(신규 사업인 경우) 또는 수금지연을 암시
+- IT서비스업 특성상 선금/기성 수익 인식이 일반적인데, 매출채권이 과도함
+- **대손충당금 급증(45백만→680백만)과 연동되어 수금 리스크 신호**
+
+**추천 감사절차:**
+1. **매출채권 연령분석(Aging Analysis) 실시**: 기말 매출채권 중 90일 이상 미회수액 규모 및 구성 확인, 대손 가능성 평가
+2. **표본 추출을 통한 매출 거래 입증**: 기말 전후 3개월 거래 중 대액 매출 10건을 선정하여 계약서, 납품증, 송금 증거 확인 및 매출채권 잔액 재계산
+
+---
+
+### 📊 이상 계정 2: 대손충당금
+
+| 항목 | 내용 |
+|------|------|
+| **계정과목명** | 대손충당금 |
+| **변동 금액** | (635,000,000)원 (충당금 증가) |
+| **변동률** | +1,411% |
+| **PM 대비 배수** | 1.8배 (절댓값 기준) |
+
+**이상 사유:**
+- 전기 대손충당금이 45백만원에서 당기 680백만원으로 급증 (15배 증가)
+- 매출채권 3,850백만원 대비 대손충당금 17.6% 비율은 산업 평균(2~5%)을 크게 초과
+- **충당금 적절성 부재**: 대손충당금이 갑자기 증가한 사유(특정 거래처 신용악화, 소송/분쟁, 부도 위험 등)가 불명확함
+- 회계추정(estimate)으로서 경영진의 판단 근거가 희박할 수 있음
+
+**추천 감사절차:**
+1. **대손충당금 적절성 평가**: 기말 매출채권 중 연체·부실채권 현황, 회수 불가능 판단 근거 검증, 유사 업종 대손률과 비교 분석
+2. **대손충당금 변동 분석 및 경영진 확인서 취득**: 당기 신규 적립액과 회수액/상각액 내역 추적, 적립 사유별 근</pre></td>
+                <td class="score-col"><span class="score score-low">2</span></td>
+                <td class="reasoning">The solution fails to meet multiple mandatory criteria. While it demonstrates competent analysis of 2 accounts with quantitative rigor and reasonable audit procedures, it falls far short of the required 5+ unusual accounts. More critically, it completely omits the required interview questions (minimum 2 per account), which is a core deliverable. The trial balance excerpt contains 11 line items with significant movements; a thorough analysis should identify at least 5 anomalies. The solution's truncation and incomplete K-IFRS discussion further weaken compliance. The work shown is competent but represents only partial completion of the assigned task.</td>
+            </tr>
+        
+            <tr>
+                <td>Testing with a retail company's trial balance containing dormant subsidiary investments, unusual intercompany loans with no clear business purpose, and material foreign exchange gains/losses - examining areas requiring enhanced substantive procedures and testing of management assumptions under K-IFRS consolidation and fair value requirements</td>
+                <td class="prompt-inputs"><strong>company_name:</strong> 한성유통㈜<br><strong>industry:</strong> 도소매업(의류 및 잡화)<br><strong>fiscal_year_end:</strong> 2024-12-31<br><strong>trial_balance_excerpt:</strong> 계정과목 | 전기 잔액(원) | 당기 잔액(원)
+현금및현금성자산 | 450,000,000 | 380,000,000
+매출채권 | 120,000,000 | 95,000,000
+재고자산 | 680,000,000 | 720,000,000
+자회사투자 | 250,000,000 | 250,000,000
+관계사차입금 | 0 | 180,000,000
+외화환산이익 | 0 | 42,500,000
+외화환산손실 | 15,000,000 | 78,000,000
+부의선급금 | 0 | 35,000,000
+매출 | 2,850,000,000 | 2,920,000,000
+판매비와관리비 | 680,000,000 | 715,000,000
+자회사투자손상차손 | 0 | 0
+이자수익 | 8,000,000 | 2,500,000<br><strong>materiality_pm:</strong> 87,600,000</td>
+                <td class="criteria">• 이상 계정 5개 이상 식별(자회사투자, 관계사차입금, 외화환산이익/손실, 부의선급금 등)하고 각각의 이상 사유를 K-IFRS 기준 관점에서 명확히 설명<br>• 각 이상 계정별로 구체적인 감사절차(예: 공정가치 평가, 관련거래 검증, 환율변동 추적 등) 최소 2개 이상 제시<br>• 경영진 인터뷰 질문이 계정별로 체계적으로 구성되어 있으며, 사업목적, 거래 근거, 회계처리 의도를 파악할 수 있는 질문 포함<br>• 분석 결과가 수행중요성(87.6백만원) 및 회사 규모를 고려하여 감사위험도를 평가하고 추가 검토 우선순위를 제시</td>
+                <td class="output"><pre># 한성유통㈜ 별도정산표 감사분석 보고서
+
+## 1단계 - 이상 계정 식별
+
+### 1. 관계사차입금
+**계정과목명:** 관계사차입금
+
+**변동 금액 및 변동률:**
+- 전기: 0원 → 당기: 180,000,000원
+- 변동액: 180,000,000원 (신규 발생)
+- PM 대비: 180,000,000원 > 87,600,000원(PM의 205%)
+
+**이상 사유:**
+- 전기에 없던 계정이 당기에 갑자기 180백만 원 규모로 발생
+- 수행중요성을 크게 초과하며, 관계사 거래의 적정성 및 공시 의무 여부 검토 필요
+- 자금 조달 목적, 이자율, 상환일정 등 거래 실질 확인 필수
+
+**추천 감사절차:**
+- 관계사 차입금 차용증서 및 자금이동 증빙(입금 확인서, 계약서) 검증
+- 관계사 확인장 통해 채권자 관점에서 차입금 존재 및 잔액 확인
+
+---
+
+### 2. 외화환산손실
+**계정과목명:** 외화환산손실
+
+**변동 금액 및 변동률:**
+- 전기: 15,000,000원 → 당기: 78,000,000원
+- 변동액: 63,000,000원 (증가율 420%)
+- PM 대비: 63,000,000원 = PM의 72%
+
+**이상 사유:**
+- 외화환산손실이 420% 급증하며 비정상적 변동
+- 동시에 외화환산이익 42.5백만 원이 신규 발생하여 양쪽 모두 급변
+- 외화포지션 급변, 환율 변동 또는 회계처리 오류 가능성 검토 필요
+- 의류 도소매 업종에서 이 규모의 외화손익이 발생하는 사유 확인 필수
+
+**추천 감사절차:**
+- 외화자산/부채 현황 분석 및 환율 변동에 따른 손익 계산 검증
+- 당기 중 발생한 외화거래 내역서(수출입 거래, 해외 투자, 외화 차입 등) 검토
+
+---
+
+### 3. 부의선급금
+**계정과목명:** 부의선급금
+
+**변동 금액 및 변동률:**
+- 전기: 0원 → 당기: 35,000,000원
+- 변동액: 35,000,000원 (신규 발생)
+- PM 대비: 35,000,000원 = PM의 40%
+
+**이상 사유:**
+- 전기에 없던 "부의선급금" 계정이 당기에 신규 발생
+- "부의선급금"은 고객으로부터 선금을 받은 후 반품/취소되어 음수로 처리되는 특수 계정
+- 35백만 원 규모의 부의선급금이 발생한 사유, 회계처리 적정성 및 분류 검토 필요
+- 이는 채무인지 수익으로 인식해야 할 항목인지</pre></td>
+                <td class="score-col"><span class="score score-low">4</span></td>
+                <td class="reasoning">The solution demonstrates partial competence in identifying unusual accounts and proposing audit procedures, but fails to meet multiple mandatory criteria. Most critically: (1) only 3 of 5+ required unusual accounts were identified, leaving significant gaps in 자회사투자, 이자수익, and 재고자산; (2) the solution is incomplete - it abruptly ends without providing the required systematic management interview questions by account; (3) no audit risk assessment or prioritization framework was provided despite explicit criteria requirements. While the analysis of the three identified accounts shows reasonable understanding of audit procedures and materiality concepts, the incomplete scope and missing interview questions section represent substantial deficiencies in meeting the stated task requirements.</td>
+            </tr>
+        
+            </tbody>
+        </table>
+    </body>
+    </html>
+    
