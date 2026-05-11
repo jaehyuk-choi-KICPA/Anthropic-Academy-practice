@@ -1,0 +1,520 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Prompt Evaluation Report</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                line-height: 1.6;
+                margin: 0;
+                padding: 20px;
+                color: #333;
+            }
+            .header {
+                background-color: #f0f0f0;
+                padding: 20px;
+                border-radius: 5px;
+                margin-bottom: 20px;
+            }
+            .summary-stats {
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            .stat-box {
+                background-color: #fff;
+                border-radius: 5px;
+                padding: 15px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                flex-basis: 30%;
+                min-width: 200px;
+            }
+            .stat-value {
+                font-size: 24px;
+                font-weight: bold;
+                margin-top: 5px;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 20px;
+            }
+            th {
+                background-color: #4a4a4a;
+                color: white;
+                text-align: left;
+                padding: 12px;
+            }
+            td {
+                padding: 10px;
+                border-bottom: 1px solid #ddd;
+                vertical-align: top;
+            }
+            tr:nth-child(even) {
+                background-color: #f9f9f9;
+            }
+            .output-cell {
+                white-space: pre-wrap;
+            }
+            .score {
+                font-weight: bold;
+                padding: 5px 10px;
+                border-radius: 3px;
+                display: inline-block;
+            }
+            .score-high {
+                background-color: #c8e6c9;
+                color: #2e7d32;
+            }
+            .score-medium {
+                background-color: #fff9c4;
+                color: #f57f17;
+            }
+            .score-low {
+                background-color: #ffcdd2;
+                color: #c62828;
+            }
+            .output {
+                overflow: auto;
+                white-space: pre-wrap;
+            }
+
+            .output pre {
+                background-color: #f5f5f5;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                padding: 10px;
+                margin: 0;
+                font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+                font-size: 14px;
+                line-height: 1.4;
+                color: #333;
+                box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+                overflow-x: auto;
+                white-space: pre-wrap; 
+                word-wrap: break-word; 
+            }
+
+            td {
+                width: 20%;
+            }
+            .score-col {
+                width: 80px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Prompt Evaluation Report</h1>
+            <div class="summary-stats">
+                <div class="stat-box">
+                    <div>Total Test Cases</div>
+                    <div class="stat-value">3</div>
+                </div>
+                <div class="stat-box">
+                    <div>Average Score</div>
+                    <div class="stat-value">8.7 / 10</div>
+                </div>
+                <div class="stat-box">
+                    <div>Pass Rate (≥7)</div>
+                    <div class="stat-value">100.0%</div>
+                </div>
+            </div>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Scenario</th>
+                    <th>Prompt Inputs</th>
+                    <th>Solution Criteria</th>
+                    <th>Output</th>
+                    <th>Score</th>
+                    <th>Reasoning</th>
+                </tr>
+            </thead>
+            <tbody>
+    
+            <tr>
+                <td>Testing with a Trial Balance containing unusually high accounts receivable aging with significant allowance discrepancies, requiring assessment of collection risks, debt impairment procedures, and management inquiries about customer creditworthiness and collection efforts</td>
+                <td class="prompt-inputs"><strong>company_name:</strong> 삼성전자부품 주식회사<br><strong>industry:</strong> 전자부품 제조업<br><strong>fiscal_year_end:</strong> 2024-12-31<br><strong>trial_balance_excerpt:</strong> 계정과목 | 전기말잔액(원) | 당기말잔액(원)
+매출채권 | 2,450,000,000 | 3,890,000,000
+매출채권대손충당금 | (98,000,000) | (125,000,000)
+재고자산 | 1,200,000,000 | 1,850,000,000
+미수금 | 180,000,000 | 420,000,000
+선급금 | 95,000,000 | 380,000,000
+매출 | - | 8,500,000,000
+판매비와관리비 | - | 1,200,000,000
+대손비 | - | 35,000,000<br><strong>materiality_pm:</strong> 425,000,000</td>
+                <td class="criteria">• 3가지 이상 계정을 정확히 식별하고 각각의 이상 사유를 명확히 설명<br>• 각 이상 계정에 대해 구체적인 감사절차(예: 연령분석, 회수가능성 검토, 대손충당금 적절성 평가) 제시<br>• 경영진 인터뷰 질문이 계정별로 구분되어 있으며, 회수 가능성, 신용도, 회수 노력 등 실무적 내용 포함<br>• 분석이 K-GAAP 기준 및 중소기업 감사 환경에 적절한 수준으로 작성</td>
+                <td class="output"><pre># 삼성전자부품 주식회사 감사 분석
+
+## 1단계 - 이상 계정 식별
+
+### 【이상 계정 1】매출채권
+
+**계정과목명:** 매출채권
+
+**변동 금액 및 변동률:**
+- 변동 금액: 1,440,000,000원 (3,890,000,000 - 2,450,000,000)
+- 변동률: +58.8%
+
+**이상 사유:**
+- 변동액 1,440,000,000원이 수행중요성(PM) 425,000,000원의 3.4배 초과
+- 매출 8,500,000,000원 대비 매출채권 연초대비 증가액이 16.9% 수준으로 높은 편
+- 당기 매출 대비 매출채권 회전율 저하(매출채권 순액 비율 증가)
+- 대손충당금 증가(27,000,000원)도 함께 증가했으나 충당률 제고 필요성 검토 필요
+
+**추천 감사절차:**
+1. 기말 매출채권 대고객 확인서 회수 및 미회수 항목 상세 검토
+2. 대손충당금 적절성 검토: 고객신용도 평가, 연령분석(aging analysis), 회수가능성 평가
+
+---
+
+### 【이상 계정 2】재고자산
+
+**계정과목명:** 재고자산
+
+**변동 금액 및 변동률:**
+- 변동 금액: 650,000,000원 (1,850,000,000 - 1,200,000,000)
+- 변동률: +54.2%
+
+**이상 사유:**
+- 변동액 650,000,000원이 수행중요성(PM) 425,000,000원의 1.5배 초과
+- 매출 8,500,000,000원 대비 재고자산이 21.8%로 높은 수준
+- 당기 매출 대비 재고회전율 저하로 유동성 악화 우려
+- 제조업 특성상 원자재, 반제품, 완제품의 적절한 보유 수준 검토 필요
+- 재고자산 평가손 또는 진부화손의 적절한 인식 여부 검토 필요
+
+**추천 감사절차:**
+1. 기말재고자산 실사(현지조사): 수량 검증, 상태 평가, 진부화 및 손상 여부 확인
+2. 재고자산 가치평가 검토: 원가계산 검증, 저가법 적용의 적절성, 진부화 충당금 적절성
+
+---
+
+### 【이상 계정 3】선급금
+
+**계정과목명:** 선급금
+
+**변동 금액 및 변동률:**
+- 변동 금액: 285,000,000원 (380,000,000 - 95,000,000)
+- 변동률: +300.0%
+
+**이상 사유:**
+- 변동액 285,000,000원이 수행중요성(PM) 425,000,000원에 근접(67%)
+- 변동률 300%로 극히 비정상적인 증가
+- 선급금의 절대규모는 작으나, 변동의 급격성과 비율이 비정상
+- 선급금의 회수가능성, 공급업체 신용도, 납기 지연 등 리스크 요인 검토 필요
+- 선급금이 비유동자산화되거나 불량채권화될 가능성 점검 필요
+
+**추천 감사절차:**
+1. 선급금 명세서 검토: 거래처별 선급 사유, 납기 예정일, 회수 진행 상황 확인
+2. 기말 후 회수 현황 검토: 결산 후 선급금 상계 및 반품 현황, 거래처 신용도 평가
+
+---
+
+## 2단계 - 기말감사 인터뷰 질문
+
+### 【매출채권】
+
+**질문 1:**
+"당기 매출채권이 전기 대비 58.8% 증가하여 1,440억 원이 늘었습니다. 이러한 급격한 증가가 발생한 주요 원인이 무엇이며, 이는 고객 구성의 변화(신규 고객 추가, 기존 고객 매출 증가), 신용조건 변경(외상기간 연장), 또는 기말 근처의 대량 판매에 기인한 것인지 설명해주시겠습니까?"
+
+**질문 2:**
+"대손충당금이 27억 원 증가되었으나, 매출채권 순액 대비 충당률이 3.2%에서 3.1%로 미미하게 변화했습니다. 당기 중 발생한 실제 대손액, 고객 신용도 악화 사항, 회수 지연 또는 회수 불가능한 채권이 있는지, 그리고 현행 충당금 수준이 충분하다고 판단하신 근거가 무엇인지 말씀해주십시오."
+
+---
+
+### 【재고자산】
+
+**질문 1:**
+"재고자산이 전기 대비 54.2% 증가하여 6억 5천만 원이 늘었습니다. 이러한 재고 증가가 제조 계획상 의도적인 증산 비축인지, 아니면 판매 부진으로 인한 판매 예정 미충족인지, 구체적으로 어느 품목의 재고가 얼마나 증가했는지 설명해주시겠습니까?"
+
+**질문 2:**
+"현재 재고자산 중에서 진부화되었거나 손상된 재고, 또는 판매 가능성이 낮은 재고가 있다면 어느 정도 규모이며, 이에 대해 평가손 또는 낙제충당금을 어느 수준으로 인식하셨는지, 그 산정 근거를 설명해주십시오."
+
+---
+
+### 【선급금】
+
+**질문 1:**
+"선급금이 전기 9,500만 원에서 3억 8,000만 원으로 4배 이상 증가했습니다. 이러한 급격한 증가의 주요 원인이 무엇이며, 선급금의 주요 공급업체는 어디이고, 각 거래처별로 선급한 사유, 납기 예정일, 그리고 현재까지의 납품 현황은 어떠한지 구체적으로 설명해주시겠습니까?"
+
+**질문 2:**
+"기말 현재 선급금 중에서 예정 납기를 초과하여 미수령 상태인 항목이 있는지, 있다면 그 규모와 미수령 사유가 무엇인지, 그리고 해당 공급업체의 신용도나 사업 현황에 문제가 없는지 확인해주시겠습니까?"</pre></td>
+                <td class="score-col"><span class="score score-high">8</span></td>
+                <td class="reasoning">솔루션은 모든 필수 요건을 충족합니다. 3가지 이상 계정을 정확히 식별했고, 각각에 대해 명확한 이상 사유(변동액, 변동률, 수행중요성 비교)를 제시했으며, 구체적인 감사절차와 실무적 인터뷰 질문을 계정별로 제공했습니다. K-GAAP 기준 및 중소기업 감사 환경에 적절한 수준으로 작성되었습니다. 다만 일부 감사절차에서 더욱 구체적인 평가 방법론이나 회계처리 검토 절차가 추가되면 더욱 완성도 높은 분석이 될 수 있습니다.</td>
+            </tr>
+        
+            <tr>
+                <td>Testing with a Trial Balance showing material related-party transactions, intercompany balances, and unusual expense accounts (e.g., excessive entertainment, consulting fees to company insiders), requiring evaluation of transaction legitimacy, disclosure compliance, and management representations on business purpose and arm's length pricing</td>
+                <td class="prompt-inputs"><strong>company_name:</strong> 한솔테크놀로지 주식회사<br><strong>industry:</strong> 전자부품 제조업<br><strong>fiscal_year_end:</strong> 2024-12-31<br><strong>trial_balance_excerpt:</strong> 계정과목 | 전기 잔액(원) | 당기 잔액(원)
+
+[자산]
+외상매출금 | 245,000,000 | 892,000,000
+선급금 | 18,500,000 | 156,300,000
+기타 미수금 | 5,200,000 | 87,600,000
+
+[부채]
+외상매입금 | 312,000,000 | 298,000,000
+선수금 | 42,000,000 | 38,500,000
+미지급비용 | 28,000,000 | 31,200,000
+
+[수익]
+제품매출 | 2,450,000,000 | 2,680,000,000
+기타수익 | 12,000,000 | 9,500,000
+이자수익 | 2,100,000 | 1,800,000
+
+[비용]
+광고선전비 | 45,000,000 | 198,500,000
+경영진자문료 | 8,000,000 | 67,200,000
+접대비 | 22,000,000 | 94,600,000<br><strong>materiality_pm:</strong> 80,000,000</td>
+                <td class="criteria">• 세 가지 이상 계정을 명확히 식별하고, 각각의 이상 사유를 구체적으로 설명 (전기 대비 변동율, 업무 특성상 부적절성 등)<br>• 각 계정별로 최소 2개 이상의 실행 가능한 감사절차 제시 (표본 검증, 문서 확인, 관계자 확인 등)<br>• 각 계정별로 경영진/담당자에게 확인할 인터뷰 질문을 최소 2개 이상 제시<br>• 관련 당사자 거래, 공정거래 가능성, K-GAAP 공시 요구사항 등 감사 위험을 반영한 질문 포함</td>
+                <td class="output"><pre># 한솔테크놀로지 주식회사 별도정산표 감사분석
+
+## 1단계 - 이상 계정 식별
+
+### 【이상 계정 1】 외상매출금
+
+**계정과목명:** 외상매출금
+
+**변동 현황:**
+- 전기 잔액: 245,000,000원
+- 당기 잔액: 892,000,000원
+- 변동 금액: +647,000,000원
+- 변동률: +264.1%
+
+**이상 사유:**
+- 변동 금액(647,000,000원)이 수행중요성(80,000,000원)의 약 8배 초과
+- 제품매출 증가율(9.4%)에 비해 외상매출금 증가율(264.1%)이 과도하게 높음
+- 회수 불능 채권, 분식매출, 또는 기말 대량 선적(적재) 등의 위험 신호
+- 매출채권 회전율 악화로 유동성 악화 우려
+
+**추천 감사절차:**
+1. **표본 검증:** 당기 신규 발생한 주요 외상매출금(상위 20건) 거래 명세서, 출하증, 송장 등 증빙서류 대조 확인
+2. **기말 채권 확인장:** 주요 거래처 3곳 이상에 대해 확인장(Confirmation Letter) 발송하여 금액 검증 및 회수 가능성 확인
+
+---
+
+### 【이상 계정 2】 광고선전비
+
+**계정과목명:** 광고선전비
+
+**변동 현황:**
+- 전기 잔액: 45,000,000원
+- 당기 잔액: 198,500,000원
+- 변동 금액: +153,500,000원
+- 변동률: +341.1%
+
+**이상 사유:**
+- 변동 금액(153,500,000원)이 수행중요성(80,000,000원)을 초과
+- 전년 대비 4배 이상 급증하여 이상적인 수준
+- 매출 증가율(9.4%)에 비해 광고비 증가율(341.1%)이 부당하게 높음
+- 광고비를 통한 이익 조정, 부실 지출, 또는 관련자 거래 가능성
+- 광고비의 실제 집행 내역과 효과성 검증 필요
+
+**추천 감사절차:**
+1. **상세 거래처 분석:** 당기 광고선전비 전체 항목을 거래처별, 광고매체별로 분류하여 상위 거래처(누적 70% 이상)의 계약서, 청구서, 지급증빙 검토
+2. **관련자 거래 확인:** 광고대행사, 매체사 등이 경영진 및 주요 주주와의 관련사 여부 확인 및 거래 적정성 검증
+
+---
+
+### 【이상 계정 3】 선급금
+
+**계정과목명:** 선급금
+
+**변동 현황:**
+- 전기 잔액: 18,500,000원
+- 당기 잔액: 156,300,000원
+- 변동 금액: +137,800,000원
+- 변동률: +745.1%
+
+**이상 사유:**
+- 변동 금액(137,800,000원)이 수행중요성(80,000,000원)을 초과
+- 전년 대비 7배 이상 급증하여 극도로 이상적인 수준
+- 선급금의 급증은 통상 자금 부족(유동성 악화), 신규 프로젝트 선급, 또는 부실 거래의 신호
+- 기말 잔액이 당기 해소되지 않을 경우 자산의 실질성 의문
+- 장기 미회수 선급금의 손상(Impairment) 검토 필요
+
+**추천 감사절차:**
+1. **선급금 상세 내역 검증:** 당기 신규 발생 선급금(금액 기준 상위 10건)에 대해 거래처 확인, 계약서, 납품 예정일, 회수 계획 등을 상세히 검토하고 기말 이후 회수 현황 추적
+2. **거래처 신용도 평가:** 선급금 거래처의 신용등급, 재무상태, 거래 이력을 확인하여 회수 불능 위험성을 평가하고, 1년 이상 미회수 선급금에 대한 손상 적립 필요성 판단
+
+---
+
+## 2단계 - 기말감사 인터뷰 질문
+
+### 【이상 계정 1】 외상매출금
+
+**질문 1:**
+> "당기 외상매출금이 전년 대비 264% 증가하여 892억 원에 도달했습니다. 이러한 급증의 주요 원인이 무엇이며, 특정 거래처의 대량 판매로 인한 것인지 아니면 전반적인 판매 확대에 따른 것인지 구체적으로 설명해 주십시오."
+
+**질문 2:**
+> "기말 현재 외상매출금 중에서 90일 이상 미수금이 있다면 얼마이며, 이들 채권에 대한 회수 계획 및 손상 가능성은 어떻게 평가하고 계십니까?"
+
+---
+
+### 【이상 계정 2】 광고선전비
+
+**질문 1:**
+> "광고선전비가 전년 대비 341% 급증했는데, 이러한 증가가 구체적으로 어느 광고매체(온라인, TV, 옥외 등)와 어느 신제품 또는 시장에 대한 홍보인지, 그리고 이번 광고 캠페인의 예상 효과는 무엇인지 설명해 주십시오."
+
+**질문 2:**
+> "광고비 집행 거래처 중 주요 거래처 3~4곳의 회사명과 각각의 거래 금액, 그리고 이들 거래처가 회사의 임직원 또는 주요 주주와의 관련사 관계가 있는지 확인해 주십시오."
+
+---
+
+### 【이상 계정 3】 선급금
+
+**질문 1:**
+> "당기 선급금이 전년 대비 745% 증가하여 156억 원에 달했습니다. 현재 선급금의 주요 구성 내역이 무엇이며, 각 항목별 거래처, 선급 사유, 예상 납품일(또는 용역 완료일), 그리고 기말 현재까지의 회수 진행 상황을 설명해 주십시오."
+
+**질문 2:**
+> "기말 현재 선급금 중에서 3개월 이상 미회수되고 있는 항목이 있다면, 그 거래처의 신용도는 어떠하며, 향후 회수 가능성에 대해 경영진은 어떻게 평가하고 있습니까? 특히 회수 불능 위험이 있다고 판단되는 항목이 있는지 말씀해 주십시오."
+
+---
+
+## 감사 종합 의견
+
+한솔테크놀로지는 **유동자산(외상매출금, 선급금) 및 마케팅 비용의 급증**이라는 3가지 이상 신호를 나타내고 있습니다. 이는 ① **매출 수익성의 왜곡 가능성**, ② **자금 유동성 악화**, ③ **관련자 거래 위험**을 시사합니다.
+
+**감사 위험도를 "중~높음"으로 평가하며**, 상기 추천 절차를 통해 거래의 진정성, 자산의 실질성, 그리고 회수 가능성을 철저히 검증할 필요가 있습니다.</pre></td>
+                <td class="score-col"><span class="score score-high">9</span></td>
+                <td class="reasoning">The solution comprehensively meets all mandatory criteria: (1) three unusual accounts clearly identified with specific quantitative justification; (2) multiple audit procedures per account that are concrete and implementable (confirmation letters, detailed transaction testing, credit analysis); (3) minimum two interview questions per account addressing materiality, business rationale, and recovery/realization risks. The secondary criteria are largely satisfied through discussion of related party risks, liquidity concerns, and earnings quality implications. However, the solution could be strengthened by more explicit K-GAAP/accounting standard references and deeper probing into potential earnings management mechanisms. The overall audit risk assessment ('중~높음') is appropriately calibrated given the magnitude of changes and liquidity concerns. The solution demonstrates solid professional audit judgment appropriate for a mid-sized manufacturing company audit.</td>
+            </tr>
+        
+            <tr>
+                <td>Testing with a Trial Balance displaying inventory fluctuations, significant write-offs, and unusual cost of goods sold variances that deviate from industry benchmarks, requiring inventory count procedures, obsolescence assessments, and management inquiries about valuation methods, physical counts, and potential supply chain disruptions</td>
+                <td class="prompt-inputs"><strong>company_name:</strong> 한샘전자 주식회사<br><strong>industry:</strong> 전자부품 제조업<br><strong>fiscal_year_end:</strong> 2024-12-31<br><strong>trial_balance_excerpt:</strong> 계정과목 | 전기 잔액(원) | 당기 잔액(원)
+---
+[자산]
+재고자산 | 2,850,000,000 | 4,120,000,000
+미수금 | 680,000,000 | 720,000,000
+선급금 | 145,000,000 | 280,000,000
+[부채]
+외상금 | 920,000,000 | 1,850,000,000
+선수금 | 320,000,000 | 95,000,000
+충당금 | 180,000,000 | 580,000,000
+[수익]
+매출액 | 12,500,000,000 | 11,800,000,000
+기타수익 | 220,000,000 | 85,000,000
+이자수익 | 45,000,000 | 18,000,000
+[비용]
+매출원가 | 8,750,000,000 | 9,440,000,000
+재고자산평가손 | 0 | 385,000,000
+판매비와관리비 | 2,100,000,000 | 2,050,000,000<br><strong>materiality_pm:</strong> 450000000</td>
+                <td class="criteria">• 총 3개의 이상 계정을 식별하고, 각각에 대해 이상 사유를 정량적 근거(비율, 변동액)와 함께 제시<br>• 각 이상 계정별로 구체적인 감사절차(예: 실사, 확인, 분석절차 등)를 최소 2가지 이상 제시<br>• 각 계정별로 경영진에게 확인할 구체적인 인터뷰 질문을 최소 2개 이상 제시<br>• K-GAAP 기준 및 중소기업 감사 환경을 고려한 실무적 제안 포함</td>
+                <td class="output"><pre># 한샘전자 주식회사 별도정산표 감사분석
+
+## 1단계 - 이상 계정 식별
+
+### **이상 계정 1: 재고자산**
+
+**기본 정보:**
+- 전기 잔액: 2,850,000,000원
+- 당기 잔액: 4,120,000,000원
+- **변동 금액: +1,270,000,000원**
+- **변동률: +44.6%**
+
+**이상 사유:**
+- 변동 금액(1,270백만원)이 수행중요성(450백만원)의 2.8배 초과
+- 매출액은 전기 대비 2.9% 감소(125억→118억원)했음에도 재고자산은 44.6% 대폭 증가
+- 동시에 재고자산평가손 385백만원이 신규 발생하여, 재고자산의 품질 악화 신호
+- 업종 특성상 제조업의 재고 회전율 저하 우려
+
+**추천 감사절차:**
+1. **기말 재고자산 실사** - 재고자산 전수 또는 표본 실사를 통해 존재성, 평가액의 적정성 검증
+2. **재고자산 회전율 분석** - 기말 재고자산액/매출원가(일일기준)를 계산하여 과다 보유 여부 확인 및 추가 평가손 필요성 검토
+
+---
+
+### **이상 계정 2: 외상금(매입채무)**
+
+**기본 정보:**
+- 전기 잔액: 920,000,000원
+- 당기 잔액: 1,850,000,000원
+- **변동 금액: +930,000,000원**
+- **변동률: +101.1%**
+
+**이상 사유:**
+- 변동 금액(930백만원)이 수행중요성(450백만원)의 2.1배 초과
+- 2배 이상 급증한 외상금 대비 매출원가는 8.9% 증가에 불과
+- 매출액이 오히려 감소한 상황에서 외상금이 급증 → 공급업체 신용 조건 변경 또는 구매 정책 변화 의심
+- 매입채무 관리 및 유동성 악화 신호
+
+**추천 감사절차:**
+1. **외상금 상세 내역 검증** - 공급처별 외상금 잔액을 연령대별(Aging Analysis)로 분석하여 미지급 사유 및 결제 능력 확인
+2. **차입금 및 현금흐름 분석** - 외상금 급증에도 불구하고 차입금 변동 및 당기 현금흐름표를 검토하여 유동성 악화 여부 평가
+
+---
+
+### **이상 계정 3: 충당금**
+
+**기본 정보:**
+- 전기 잔액: 180,000,000원
+- 당기 잔액: 580,000,000원
+- **변동 금액: +400,000,000원**
+- **변동률: +222.2%**
+
+**이상 사유:**
+- 변동 금액(400백만원)이 수행중요성(450백만원)에 근접하며 극도로 이상
+- 순증가율 222.2%로 매우 급격한 증가
+- 재고자산평가손(385백만원), 외상금 폭증(930백만원), 매출 감소 등 부정적 신호와 동시 발생
+- 충당금의 성격(품질보증충당금/소송비충당금/환경충당금 등)과 근거 명확성 의문
+
+**추천 감사절차:**
+1. **충당금 적정성 검토** - 충당금의 구성 내역(품질보증/소송/환경/기타)을 파악하고, 각 항목별 발생 근거 및 계산 기초 자료(산업통계, 과거 경험, 전문가 의견서)의 타당성 검증
+2. **충당금 설정 후 변동 내역 추적** - 당기 중 설정된 충당금에 대해 사용 현황을 파악하고, 이전 기 충당금이 완전히 해제되었는지 확인하여 과다 설정 여부 판단
+
+---
+
+## 2단계 - 기말감사 인터뷰 질문
+
+### **재고자산 관련 질문**
+
+**질문 1:** 
+매출액이 전년도 대비 약 2.9% 감소한 상황에서 재고자산이 44.6% 증가한 주요 원인은 무엇입니까? 특히 신제품 출시, 장기 수주 물량 확보, 또는 생산 계획상 의도적 재고 적립이 있었는지 설명해 주십시오.
+
+**질문 2:**
+당기 중 재고자산평가손 385백만원이 발생한 원인과 내용은 무엇이며, 기말 현재 진행 중인 재고자산에 대해 추가적인 평가손이 필요하다고 판단하는 항목은 없습니까?
+
+---
+
+### **외상금(매입채무) 관련 질문**
+
+**질문 1:**
+외상금이 전년도 대비 101% 증가하여 920백만원에서 1,850백만원으로 늘어난 구체적인 사유를 설명해 주십시오. 이는 특정 공급처와의 신용거래 확대, 결제 조건 연장, 또는 특수관계자 거래와 관련이 있습니까?
+
+**질문 2:**
+현재 기말의 외상금 중 30일 이상 미지급액의 규모는 어느 정도이며, 이러한 미지급금에 대한 당사의 현금 유동성 계획과 향후 결제 일정은 어떻게 되어 있습니까?
+
+---
+
+### **충당금 관련 질문**
+
+**질문 1:**
+충당금이 전년도 180백만원에서 당기 580백만원으로 222% 급증한 사유는 무엇이며, 현재 설정되어 있는 충당금의 항목별 내역(품질보증충당금, 소송비충당금, 기타 충당금 등)과 각 항목별 금액을 상세히 설명해 주십시오.
+
+**질문 2:**
+이러한 충당금 증액이 특정 법적 분쟁, 제품 결함, 환경 문제, 또는 고객 클레임과 직접 연관되어 있다면, 그 사건의 성격, 발생 배경, 합의 또는 해결 가능성에 대해 구체적으로 설명해 주십시오.
+
+---
+
+## 감사 의견 요약
+
+한샘전자의 당기 별도정산표는 **매출 감소 대비 비정상적인 자산 및 부채 증가 패턴**을 보이고 있습니다. 특히 **재고자산 44.6% 증가, 외상금 101% 증가, 충당금 222% 증가**는 경영 환경의 악화, 유동성 위험, 잠재적 손실 인식을 시사하는 신호입니다. 
+
+위 세 계정에 대한 철저한 검증과 경영진 확인이 감사의 신뢰성 확보에 필수적입니다.</pre></td>
+                <td class="score-col"><span class="score score-high">9</span></td>
+                <td class="reasoning">The solution comprehensively meets all four mandatory criteria: (1) identifies 3 unusual accounts with quantitative evidence and materiality thresholds; (2) provides 2+ specific audit procedures per account that are methodologically sound; (3) includes 2+ targeted interview questions per account that directly address the anomalies; (4) demonstrates practical audit thinking appropriate for K-GAAP and SME context. The analysis is logically structured, uses appropriate audit terminology, and shows good professional judgment in connecting the three anomalies to broader financial health concerns. However, the solution could be strengthened by more explicit K-GAAP references and deeper consideration of SME-specific audit challenges. The weaknesses are secondary in nature and do not undermine the core requirements.</td>
+            </tr>
+        
+            </tbody>
+        </table>
+    </body>
+    </html>
+    

@@ -47,4 +47,32 @@ MCP를 통해 Excel,사내 시스템과 연동되는 실전 수준의 AI 감사 
 
 ---
 
-## 폴더 구조 (예정)
+## 폴더 구조
+
+2026-05-11 기준으로 강의 목차 순서에 맞춰 파일을 재분류했다.
+그동안 실습 파일이 `Building with the Claude API/` 한 폴더에 쌓이면서
+어느 파일이 어느 강의 챕터에 해당하는지 커밋 이력을 뒤져야만 파악할 수 있는 상태였다.
+Building with the Claude API 공식 목차를 기준으로 챕터별 폴더를 만들어 파일을 이동했다.
+
+앞으로는 새 실습 파일을 만들 때마다 해당 챕터 폴더에 바로 넣고,
+파일명도 강의 챕터 번호와 매칭되게 짓는다.
+학습 진도 추적과 포트폴리오 가시성 양면에서 이 구조를 유지하는 것이 낫다고 판단했다.
+
+```
+Building with the Claude API/
+├── 001. Accessing Claude with the API/     ← API 기초, 시스템 프롬프트, 온도 제어, 실습 #1~3
+│   ├── 실습_System prompts.ipynb
+│   ├── 실습_Temperature.ipynb
+│   ├── 실습문제#1_chat exercise.ipynb
+│   ├── 실습문제#2_system prompts exercise.ipynb
+│   └── 실습문제#3_structured data exercise.ipynb
+└── 002. Prompt evaluation/                 ← 프롬프트 평가 파이프라인, 프롬프팅 기법, 실습 #4~5
+    ├── 001_prompt_evals_학습자료_다운로드.ipynb  (외 강의자료 3종)
+    ├── 002_prompting_예시_학습자료_다운로드.ipynb
+    ├── 실습_Model based grading.ipynb
+    ├── 실습_Model based grading and code based grading.ipynb
+    ├── 실습_Running the eval.ipynb
+    ├── 실습_prompting.ipynb
+    ├── 실습문제#4_exercise on prompt evals.ipynb
+    └── 실습문제#5_exercise on prompting.ipynb  ← 오늘 작성
+```
