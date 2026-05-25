@@ -33,9 +33,11 @@ MCP를 통해 Excel,사내 시스템과 연동되는 실전 수준의 AI 감사 
   실제 시스템을 만들기 위한 핵심 역량을 다루는 메인 코스입니다.
   조서 자동화 프로젝트의 기술적 토대가 되는 강의입니다.
 - **학습 현황**: Prompt Evaluation, Prompt Engineering Techniques 섹션 완료.
-  Tool Use with Claude 섹션 진행 중 — Tool functions, Multi-turn conversations with tools,
+  Tool Use with Claude 섹션 완료 — Tool functions, Multi-turn conversations with tools,
   Implementing multiple turns, Using multiple tools, Fine-grained tool calling,
   Text editor tool, Web search 까지 실습 완료.
+  RAG and Agentic Search 섹션 완료 — 텍스트 청킹, 임베딩, RAG 흐름 구현,
+  BM25 어휘 검색, 멀티 인덱스 하이브리드 파이프라인 실습 완료.
 
 ### 3. Introduction to MCP — 외부 시스템 연동
 - 링크: 
@@ -86,13 +88,19 @@ Building with the Claude API/
 │   ├── 002_prompting_예시_학습자료_다운로드.ipynb
 │   ├── 실습_prompting.ipynb
 │   └── 실습문제#5_exercise on prompting.ipynb
-└── 004. Tool use with Claude/              ← 도구 정의·schema·tool use 루프, 멀티 툴, 스트리밍, 빌트인 도구(텍스트 편집/웹 검색) (실습 #1~7)
-    ├── 실습001_tools_tool_functions.ipynb
-    ├── 실습002_tools_007_Multi-turn_conversations_with_tools.ipynb
-    ├── 실습003_tools_008_implementing_multiple_turns.ipynb
-    ├── 실습004_tools_009_Using_multiple_tools.ipynb
-    ├── 실습005_tool_streaming_010_Fine_grained_tool_calling.ipynb
-    ├── 실습006_tools_010_text_editor_tool.ipynb
-    ├── 실습007_tools_12_web_search.ipynb
-    └── 실습007_tools_12_web_search_예제.ipynb
+├── 004. Tool use with Claude/              ← 도구 정의·schema·tool use 루프, 멀티 툴, 스트리밍, 빌트인 도구(텍스트 편집/웹 검색) (실습 #1~7)
+│   ├── 실습001_tools_tool_functions.ipynb
+│   ├── 실습002_tools_007_Multi-turn_conversations_with_tools.ipynb
+│   ├── 실습003_tools_008_implementing_multiple_turns.ipynb
+│   ├── 실습004_tools_009_Using_multiple_tools.ipynb
+│   ├── 실습005_tool_streaming_010_Fine_grained_tool_calling.ipynb
+│   ├── 실습006_tools_010_text_editor_tool.ipynb
+│   ├── 실습007_tools_12_web_search.ipynb
+│   └── 실습007_tools_12_web_search_예제.ipynb
+└── 005. RAG and Agentic Search/            ← 청킹·임베딩·벡터DB·BM25·하이브리드 검색 (실습 #1~6)
+    ├── 실습001_chunking_Text chunking strategies_002.ipynb
+    ├── 실습002_embeddings_Text embeddings_003.ipynb
+    ├── 실습003_vectordb_implementing the RAG flow_005.ipynb
+    ├── 실습004_bm25_BM25 lexical search_006.ipynb
+    └── 실습006_hybrid_A Multi-IndexRAGpipeline_007.ipynb
 ```
