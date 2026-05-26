@@ -38,6 +38,7 @@ MCP를 통해 Excel,사내 시스템과 연동되는 실전 수준의 AI 감사 
   Text editor tool, Web search 까지 실습 완료.
   RAG and Agentic Search 섹션 완료 — 텍스트 청킹, 임베딩, RAG 흐름 구현,
   BM25 어휘 검색, 멀티 인덱스 하이브리드 파이프라인 실습 완료.
+  Features of Claude 섹션 진행 중 — Extended Thinking(확장 사고) 실습 완료.
 
 ### 3. Introduction to MCP — 외부 시스템 연동
 - 링크: 
@@ -97,10 +98,13 @@ Building with the Claude API/
 │   ├── 실습006_tools_010_text_editor_tool.ipynb
 │   ├── 실습007_tools_12_web_search.ipynb
 │   └── 실습007_tools_12_web_search_예제.ipynb
-└── 005. RAG and Agentic Search/            ← 청킹·임베딩·벡터DB·BM25·하이브리드 검색 (실습 #1~6)
-    ├── 실습001_chunking_Text chunking strategies_002.ipynb
-    ├── 실습002_embeddings_Text embeddings_003.ipynb
-    ├── 실습003_vectordb_implementing the RAG flow_005.ipynb
-    ├── 실습004_bm25_BM25 lexical search_006.ipynb
-    └── 실습006_hybrid_A Multi-IndexRAGpipeline_007.ipynb
+├── 005. RAG and Agentic Search/            ← 청킹·임베딩·벡터DB·BM25·하이브리드 검색 (실습 #1~6)
+│   ├── 실습001_chunking_Text chunking strategies_002.ipynb
+│   ├── 실습002_embeddings_Text embeddings_003.ipynb
+│   ├── 실습003_vectordb_implementing the RAG flow_005.ipynb
+│   ├── 실습004_bm25_BM25 lexical search_006.ipynb
+│   └── 실습006_hybrid_A Multi-IndexRAGpipeline_007.ipynb
+└── 006. Features of Claude/                ← Claude 부가 기능 - Extended Thinking 등 (실습 #1~)
+    ├── 001_thinking_complete.ipynb
+    └── 실습001_thinking_Extended thinking_001.ipynb
 ```
