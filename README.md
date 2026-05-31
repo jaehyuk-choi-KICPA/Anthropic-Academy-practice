@@ -38,7 +38,8 @@ MCP를 통해 Excel,사내 시스템과 연동되는 실전 수준의 AI 감사 
   Text editor tool, Web search 까지 실습 완료.
   RAG and Agentic Search 섹션 완료 — 텍스트 청킹, 임베딩, RAG 흐름 구현,
   BM25 어휘 검색, 멀티 인덱스 하이브리드 파이프라인 실습 완료.
-  Features of Claude 섹션 진행 중 — Extended Thinking(확장 사고) 실습 완료.
+  Features of Claude 섹션 진행 중 — Extended Thinking(확장 사고), 이미지 분석,
+  인용(Citations) 실습 완료.
 
 ### 3. Introduction to MCP — 외부 시스템 연동
 - 링크: 
@@ -104,7 +105,10 @@ Building with the Claude API/
 │   ├── 실습003_vectordb_implementing the RAG flow_005.ipynb
 │   ├── 실습004_bm25_BM25 lexical search_006.ipynb
 │   └── 실습006_hybrid_A Multi-IndexRAGpipeline_007.ipynb
-└── 006. Features of Claude/                ← Claude 부가 기능 - Extended Thinking 등 (실습 #1~)
+└── 006. Features of Claude/                ← Claude 부가 기능 - 확장 사고, 이미지 분석, 인용 (실습 #1~)
     ├── 001_thinking_complete.ipynb
-    └── 실습001_thinking_Extended thinking_001.ipynb
+    ├── 실습001_thinking_Extended thinking_001.ipynb
+    ├── 002_images.ipynb
+    ├── 실습002_citations_complete_Citations_004.ipynb
+    └── earth.pdf
 ```
